@@ -1,0 +1,65 @@
+---
+---
+@import "main";
+
+html {
+  background-color: #01090a;
+  color: #c2e9ef;
+}
+
+a {
+  color: #c2e9ef;
+}
+
+a:visited {
+  color: #2ecfe8;
+}
+
+body {
+  margin-left: 12%;
+  margin-right: 12%;
+  font-family: "Noto Sans", sans-serif;
+
+  --pagefind-ui-background: #000405;
+  --pagefind-ui-text: #c2e9ef;
+  --pagefind-ui-primary: #c2e9ef;
+  --pagefind-ui-font: "Noto Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "JetBrains Mono", monospace
+}
+
+div.article h1 {
+  font-size: 2.2em;
+}
+
+.container {
+  margin: 10px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.container h1 {
+  margin: 30px 0;
+  font-size: 4em;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.searchcontainer {
+  margin-top: 23%;
+  margin-bottom: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.title {
+  text-decoration-line: none;
+  color: #2ecfe8;
+  display: inline-block;
+  font-size: 2.5em;
+  font-family: "JetBrains Mono", monospace;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
