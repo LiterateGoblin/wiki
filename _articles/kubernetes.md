@@ -19,7 +19,9 @@ A pod has access to two kinds of storage: *ephemeral* and *persistent*. Ephemera
 
 #### Persistent storage
 
-Two Kubernetes objects are required to establish persistent storage: a persistent volume (PV) and persistent volume claim (PVC). A PVC is a request for storage made by a cluster user that includes details about the properties of that storage.
+Two Kubernetes objects are required to establish persistent storage: a persistent volume (PV) and persistent volume claim (PVC). [^2] A PVC is a request for storage made by a cluster user that includes details about the properties of that storage. To automate the management of persistent volumes, Kubernetes provides an object called a "storage class". A PVC made by a cluster user references a storage class.
+
+To access a cloud storage provider, a Container Storage Interface (CSI) driver is required to run on the cluster.
 
 ### Scheduling
 
@@ -71,7 +73,7 @@ Each container in a pod can communicate with the other containers in that pod ov
 
 ### Service Objects
 
-Requests to pods that are part of a service can be made to that service's IP address, which is static. There are 4 kinds of service objects:
+Requests to pods that are part of a service can be made to that service's IP address, which is static. [^1] There are 4 kinds of service objects:
 
 - ClusterIP, a solely internally available service. Its IP address directly maps to each of the pods backing it.
 - NodePort. This service is externally available on the node that this object is running on. External clients communicate to this service over the host node's port and IP.
@@ -84,4 +86,5 @@ A Kubernetes "ingress" object maps URL routes to services.
 
 ## References
 
-1. "Amazon EKS Primer." *AWS Skill Builder*, **<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.
+[^1]: "Managing communication in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
+[^2]: "Managing storage in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.

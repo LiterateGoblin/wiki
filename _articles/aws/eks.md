@@ -1,7 +1,7 @@
 ---
 title: Amazon EKS
 ---
-Amazon EKS is a managed service that acts as the control plane for the container orchestration software [Kubernetes](/kubernetes.html). It is also responsible for portions of the data plane.
+Amazon EKS is a managed service that acts as the control plane for the container orchestration software [Kubernetes](/wiki/kubernetes.html). It is also responsible for portions of the data plane.
 
 ## Control plane
 
@@ -18,8 +18,9 @@ EKS allows the creation of worker nodes across multiple AWS Availability Zones.
 EKS natively integrates with the following services:
 
 - AWS Elastic Load Balancing (ELB)
-- [AWS Identity and Access Management (IAM)](/aws/iam.html) for authentication and authorization
+- [AWS Identity and Access Management (IAM)](/wiki/aws/iam.html) for authentication and authorization
 - AWS VPC for networking
+- AWS Elastic File Storage (EFS) and AWS Elastic Block Storage (EBS) for persistent file storage [^2]
 
 ## EKS Management Tools
 
@@ -42,8 +43,9 @@ The cluster and each node assumes an IAM role to determine which AWS API calls t
 
 EKS integrates with AWS VPC's Container Network Interface (CNI) such that each pod on a cluster has the same IP address in the VPC as it does in the cluster. This is accomplished through the use of the Amazon VPC CNI plugin for Kubernetes.
 
-Additionally, EKS integrates with ELB using the AWS Load Balancer controller. A Kubernetes ingress object can integrate with an AWS ELB Application Load Balancer, and a Kubernetes LoadBalancer service can integrate with an AWS ELB Network Load Balancer.
+Additionally, EKS integrates with ELB using the AWS Load Balancer controller. A Kubernetes ingress object can integrate with an AWS ELB Application Load Balancer, and a Kubernetes LoadBalancer service can integrate with an AWS ELB Network Load Balancer. [^1]
 
 ## References
 
-1. "Amazon EKS Primer." *AWS Skill Builder*, **<explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.
+[^1]: "Managing communication in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
+[^2]: "Managing storage in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
