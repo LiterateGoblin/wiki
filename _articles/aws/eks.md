@@ -46,4 +46,4 @@ Additionally, EKS integrates with ELB using the AWS Load Balancer controller. A 
 
 ## References
 
-1. "Amazon EKS Primer." *AWS Skill Builder*, **<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.
+1. "Amazon EKS Primer." *AWS Skill Builder*, **<explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.

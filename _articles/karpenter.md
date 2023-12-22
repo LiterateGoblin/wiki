@@ -5,5 +5,5 @@ Karpenter is an open-source node lifecycle management solution developed by Amaz
 
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>. Accessed on 2023-12-18
-<https://www.se-radio.net/2023/11/se-radio-590-andy-suderman-on-standing-up-kubernetes/>. Accessed on 2023-12-20
+1. "Amazon EKS Primer." *AWS Skill Builder*, **<explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 18 Dec 2023.
+2. "SE Radio 590: Andy Suderman on Standing Up Kubernetes." *Software Engineering Radio*, **<www.se-radio.net/2023/11/se-radio-590-andy-suderman-on-standing-up-kubernetes/>**. 00:21:31-00:22:30. 15 Nov 2023. Accessed 20 Dec 2023.
