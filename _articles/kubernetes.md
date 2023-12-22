@@ -17,6 +17,10 @@ Kubernetes is open-source container orchestration software.
 
 A pod has access to two kinds of storage: *ephemeral* and *persistent*. Ephemeral storage only lasts as long as a pod exists, and can be used to facilitate inter-container communication within a pod. Persistent storage has a lifecycle independent of any individual pod.
 
+#### Persistent storage
+
+Two Kubernetes objects are required to establish persistent storage: a persistent volume (PV) and persistent volume claim (PVC). A PVC is a request for storage made by a cluster user that includes details about the properties of that storage.
+
 ### Scheduling
 
 The *pod scheduler* will place pods on nodes that meet all the criteria of that pod's specification.
@@ -65,6 +69,19 @@ This component adjusts the CPU reservation of each pod to more closely match its
 
 Each container in a pod can communicate with the other containers in that pod over localhost. Each pod on a node can communicate with each other using a virtual Ethernet device (veth).
 
+### Service Objects
+
+Requests to pods that are part of a service can be made to that service's IP address, which is static. There are 4 kinds of service objects:
+
+- ClusterIP, a solely internally available service. Its IP address directly maps to each of the pods backing it.
+- NodePort. This service is externally available on the node that this object is running on. External clients communicate to this service over the host node's port and IP.
+- LoadBalancer, the most commonly used service. This service links a cloud provider's load balancer to a ClusterIP and NodePort, and is thus externally available.
+- ExternalName, a service that maps a DNS name to an IP address. This allows an external resource to appear as though it were an internal service within the cluster.
+
+### Ingress
+
+A Kubernetes "ingress" object maps URL routes to services.
+
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>. Accessed 2023-12-20
+1. "Amazon EKS Primer." *AWS Skill Builder*, **<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.

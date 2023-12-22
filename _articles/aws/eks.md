@@ -42,6 +42,8 @@ The cluster and each node assumes an IAM role to determine which AWS API calls t
 
 EKS integrates with AWS VPC's Container Network Interface (CNI) such that each pod on a cluster has the same IP address in the VPC as it does in the cluster. This is accomplished through the use of the Amazon VPC CNI plugin for Kubernetes.
 
+Additionally, EKS integrates with ELB using the AWS Load Balancer controller. A Kubernetes ingress object can integrate with an AWS ELB Application Load Balancer, and a Kubernetes LoadBalancer service can integrate with an AWS ELB Network Load Balancer.
+
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>.  Accessed at 2023-12-20
+1. "Amazon EKS Primer." *AWS Skill Builder*, **<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>**. Accessed 22 Dec 2023.

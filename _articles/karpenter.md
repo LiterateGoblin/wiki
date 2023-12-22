@@ -1,5 +1,6 @@
-# Karpenter
-
+---
+title: Karpenter
+---
 Karpenter is an open-source node lifecycle management solution developed by Amazon Web Services. It is able to select particular instance types in response to a pod being scheduled that requires a specific instance, unlike a traditional cluster autoscaler.
 
 ## References
