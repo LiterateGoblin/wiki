@@ -1,6 +1,7 @@
 title: wiki
 description: ->
   A personal wiki.
+baseurl: "/wiki"
 
 collections:
   articles:
