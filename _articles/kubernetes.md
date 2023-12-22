@@ -43,6 +43,28 @@ Custom resources can be defined in Kubernetes in addition to resources such as p
 
 kubectl is a command line interface that communicates with the API server within the control plane. It can be used to give commands to create an object, configure automatic scaling, and view details about the cluster.
 
+## Scaling
+
+Kubernetes provides ways to horizontally or vertically scale out or in when demands for a service increases or decreases.
+
+### Cluster Autoscaler (CA)
+
+When a pod fails to launch this may either be because there are not enough resources on the node to allocate to the pod, or because the scheduler has determined that the pod could conserve resources by running on a different node. The CA automatically adjusts the number of nodes in a cluster when one of these situations occur, provisioning more nodes in the former situation and deprovisioning nodes in the latter.
+
+The cluster autoscaler runs as a deployment-type workload within the cluster itself. It relies on a metrics server also running as a deployment workload to provide it metrics about the current state of the CPU, or whatever metric is observed for autoscaling.
+
+### Horizontal Pod Autoscaler (HPA)
+
+This component monitors the metrics of each pod in a Kubernetes deployment. If the metric exceeds some threshold, more pods will be provisioned for that service until the threshold is no longer met or the maximum number of pods for that autoscaling group is met. The metric used by default is CPU utilization.
+
+### Vertical Pod Autoscaler (VPA)
+
+This component adjusts the CPU reservation of each pod to more closely match its actual historical usage - especially when another pod is waiting to be scheduled due to a lack of resources. When a pod is determined to have allocated more resources than required, the VPA changes the pod configuration directly.
+
+## Networking
+
+Each container in a pod can communicate with the other containers in that pod over localhost. Each pod on a node can communicate with each other using a virtual Ethernet device (veth).
+
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>. Accessed 2023-12-13
+<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>. Accessed 2023-12-20

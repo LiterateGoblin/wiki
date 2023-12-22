@@ -18,8 +18,8 @@ EKS allows the creation of worker nodes across multiple AWS Availability Zones.
 EKS natively integrates with the following services:
 
 - AWS Elastic Load Balancing (ELB)
-- [AWS Identity and Access Management (IAM)](/aws/iam.html)
-- AWS VPC
+- [AWS Identity and Access Management (IAM)](/aws/iam.html) for authentication and authorization
+- AWS VPC for networking
 
 ## EKS Management Tools
 
@@ -38,6 +38,10 @@ Authentication and authorization for commands made to the EKS API are handled us
 
 The cluster and each node assumes an IAM role to determine which AWS API calls they are allowed to make.
 
+## Networking
+
+EKS integrates with AWS VPC's Container Network Interface (CNI) such that each pod on a cluster has the same IP address in the VPC as it does in the cluster. This is accomplished through the use of the Amazon VPC CNI plugin for Kubernetes.
+
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>.  Accessed at 2023-12-15
+<https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer>.  Accessed at 2023-12-20
