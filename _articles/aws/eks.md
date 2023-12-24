@@ -1,26 +1,21 @@
 ---
 title: Amazon EKS
 ---
-Amazon EKS is a managed service that acts as the control plane for the container orchestration software [Kubernetes](/wiki/kubernetes.html). It is also responsible for portions of the data plane.
+Amazon EKS is a managed service that acts as the control plane for the container orchestration software [Kubernetes](/wiki/kubernetes.html). It is also responsible for portions of the data plane. EKS natively integrates with AWS Elastic Load Balancing [^1], [AWS Identity and Access Management (IAM)](/wiki/aws/iam.html) for authentication and authorization, AWS Virtual Private Cloud (VPC) for networking, AWS Elastic File System (EFS) or AWS Elastic Block Storage (EBS) for persistent storage, and AWS CloudWatch for metrics and logging.
 
-## Control plane
+Extensions called "add-ons" extend the operational capability of Amazon EKS without being tied to any one application [^4]. They are installed as pods running in the data plane.
+
+## Planes
+
+### Control plane
 
 The EKS control plane consists of at least two API server nodes (responsible for issuing commands to worker nodes) and three etcd (persistence layer) nodes across three AWS Availability Zones. Unhealthy nodes are automatically replaced.
 
-## Data plane
+### Data plane
 
 Worker nodes in a EKS cluster can be fully unmanaged, within a "managed node group", or an AWS Fargate pod. A managed node group automates the provisioning, management, and scaling of the nodes; unhealthy nodes are terminated and replaced with a healthy node. The group can be updated as one unit. Fargate completely manages the node infrastructure and abstracts it away from a Kubernetes operator. When using Fargate, an operator specifies which pods should be scheduled in Fargate with a JSON document called a "Fargate profile". A cluster can include pods that are running on Fargate and pods that are managed or un-managed.
 
 EKS allows the creation of worker nodes across multiple AWS Availability Zones.
-
-## Integration with other AWS services
-
-EKS natively integrates with the following services:
-
-- AWS Elastic Load Balancing (ELB)
-- [AWS Identity and Access Management (IAM)](/wiki/aws/iam.html) for authentication and authorization
-- AWS VPC for networking
-- AWS Elastic File Storage (EFS) and AWS Elastic Block Storage (EBS) for persistent file storage [^2]
 
 ## EKS Management Tools
 
@@ -45,7 +40,21 @@ EKS integrates with AWS VPC's Container Network Interface (CNI) such that each p
 
 Additionally, EKS integrates with ELB using the AWS Load Balancer controller. A Kubernetes ingress object can integrate with an AWS ELB Application Load Balancer, and a Kubernetes LoadBalancer service can integrate with an AWS ELB Network Load Balancer. [^1]
 
+## Storage
+
+To integrate with EFS and EBS, these services each offer a Container Storage Interface (CSI) that runs as a workload on the EKS cluster [^2].
+
+Fargate pods are automatically integrated with an EFS file system, without the need to manage the CSI. EBS in not compatible with Fargate pods.
+
+## Observability
+
+The AWS CloudWatch agent can be installed on each node in a cluster to export metrics to CloudWatch [^3]. To export logs to CloudWatch, an open-source logging agent must be installed on each node, such as Fluentd or Fluent Bit. These logs can also be exported to a different log searching solution, such as OpenSearch.
+
+Metrics can also be exported to sources besides CloudWatch using an open-source solutions for metrics; for example, a Prometheus agent running on each node to export metrics to Grafana.
+
 ## References
 
 [^1]: "Managing communication in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
-[^2]: "Managing storage in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
+[^2]: "Managing storage in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
+[^3]: "Gaining observability." "Amazon EKS Primer." *AWS Skill Builder*, ""[**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
+[^4]: "Maintaining add-ons." "Amazon EKS Primer." *AWS Skill Builder*, ""[**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
