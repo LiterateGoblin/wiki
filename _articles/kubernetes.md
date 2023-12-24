@@ -21,7 +21,7 @@ A pod has access to two kinds of storage: *ephemeral* and *persistent*. Ephemera
 
 Two Kubernetes objects are required to establish persistent storage: a persistent volume (PV) and persistent volume claim (PVC). [^2] A PVC is a request for storage made by a cluster user that includes details about the properties of that storage. To automate the management of persistent volumes, Kubernetes provides an object called a "storage class". A PVC made by a cluster user references a storage class.
 
-To access a cloud storage provider, a Container Storage Interface (CSI) driver is required to run on the cluster.
+To access a cloud storage provider, a Container Storage Interface (CSI) driver is required to run on the cluster. These drivers manage and mount storage automatically.
 
 ### Scheduling
 
