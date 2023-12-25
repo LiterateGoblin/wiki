@@ -3,7 +3,7 @@ title: Amazon EKS
 ---
 Amazon EKS is a managed service that acts as the control plane for the container orchestration software [Kubernetes](/wiki/kubernetes.html). It is also responsible for portions of the data plane. EKS natively integrates with AWS Elastic Load Balancing [^1], [AWS Identity and Access Management (IAM)](/wiki/aws/iam.html) for authentication and authorization, AWS Virtual Private Cloud (VPC) for networking, AWS Elastic File System (EFS) or AWS Elastic Block Storage (EBS) for persistent storage, and AWS CloudWatch for metrics and logging.
 
-Extensions called "add-ons" extend the operational capability of Amazon EKS without being tied to any one application [^4]. They are installed as pods running in the data plane.
+Extensions called "add-ons" extend the operational capability of Amazon EKS without being tied to any one application [^4]. They are installed as pods running in the data plane. Add-ons can be managed by EKS, or self-managed.
 
 ## Planes
 
@@ -46,15 +46,22 @@ To integrate with EFS and EBS, these services each offer a Container Storage Int
 
 Fargate pods are automatically integrated with an EFS file system, without the need to manage the CSI. EBS in not compatible with Fargate pods.
 
-## Observability
+## EKS Operations (Ops)
+
+### Observability
 
 The AWS CloudWatch agent can be installed on each node in a cluster to export metrics to CloudWatch [^3]. To export logs to CloudWatch, an open-source logging agent must be installed on each node, such as Fluentd or Fluent Bit. These logs can also be exported to a different log searching solution, such as OpenSearch.
 
 Metrics can also be exported to sources besides CloudWatch using an open-source solutions for metrics; for example, a Prometheus agent running on each node to export metrics to Grafana.
 
+### Maintenance
+
+Node groups AMIs, the control plane, and add-ons can all be separately updated [^5]. Fargate pods are automatically run on the latest software.
+
 ## References
 
 [^1]: "Managing communication in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 22 Dec 2023.
 [^2]: "Managing storage in Amazon EKS." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
-[^3]: "Gaining observability." "Amazon EKS Primer." *AWS Skill Builder*, ""[**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
-[^4]: "Maintaining add-ons." "Amazon EKS Primer." *AWS Skill Builder*, ""[**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
+[^3]: "Gaining observability." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 23 Dec 2023.
+[^4]: "Maintaining add-ons." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 24 Dec 2023.
+[^5]: "Managing upgrades." "Amazon EKS Primer." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer**](https://explore.skillbuilder.aws/learn/course/57/play/46911/amazon-eks-primer). Accessed 24 Dec 2023.
