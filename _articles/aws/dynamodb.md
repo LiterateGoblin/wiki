@@ -28,20 +28,20 @@ DynamoDB supports two consistency models: eventually consistent and strongly con
 
 ## Supported operations
 
-The following operations can be performed on a DynamoDB table [^2]:
+The following operations are a subset of what can be performed on a DynamoDB table [^2]:
 
-| Name         | Read/Write | *CUs consumed                                                                                         | Description                                                            |
-|--------------|------------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| GetItem      | Read       | Number of KBs of the item divided by 4 and rounded up to the nearest integer                          | Read an item from the table by primary key.                            |
-| BatchGetItem | Read       | Number of KBs per item, divided by 4 and rounded up to the nearest integer. Then, all RCUs are summed | Read many items from the table by primary key.                         |
-| Scan         | Read       | Number of KBs per item, divided by 4 and rounded up to the nearest integer. Then, all RCUs are summed | Read all items from the table.                                         |
-| Query        | Read       | Summed number of KBs per item divided by 4 and then rounded up to the nearest integer                 | Read items from the table that fulfill criteria in a query expression. |
-| PutItem      | Write      | Number of KBs of the item rounded up to the nearest integer                                           | Put an item in the table with a unique primary key.                    |
-| BatchPutItem | Write      | Number of KBs per item rounded up to the nearest integer. Then, all WCU are summed                    | Put many items into the table, each with unique primary keys.          |
-| UpdateItem   | Write      | Number of KBs of the **entire** item rounded up to the nearest integer                                | Update one or several attributes of an existing item.                  |
-| DeleteItem   | Write      | Number of KBs of the item rounded up to the nearest integer                                           | Remove an item from the table.                                         |
+| Name              | Read/Write | *CUs consumed                                                                                         | Description                                                                    |
+|-------------------|------------|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| GetItem           | Read       | Number of KBs of the item divided by 4 and rounded up to the nearest integer                          | Read an item from the table by primary key.                                    |
+| BatchGetItem      | Read       | Number of KBs per item, divided by 4 and rounded up to the nearest integer. Then, all RCUs are summed | Read many items from several tables by primary key.                            |
+| Scan              | Read       | Number of KBs per item, divided by 4 and rounded up to the nearest integer. Then, all RCUs are summed | Read all items from the table.                                                 |
+| Query             | Read       | Summed number of KBs per item divided by 4 and then rounded up to the nearest integer                 | Read items from the table that fulfill criteria in a query expression.         |
+| PutItem           | Write      | Number of KBs of the item rounded up to the nearest integer                                           | Put an item in the table with a unique primary key.                            |
+| BatchWriteItem    | Write      | Number of KBs per item rounded up to the nearest integer. Then, all WCU are summed                    | Puts or deletes many items into several tables, each with unique primary keys. |
+| UpdateItem        | Write      | Number of KBs of the **entire** item rounded up to the nearest integer                                | Update one or several attributes of an existing item.                          |
+| DeleteItem        | Write      | Number of KBs of the item rounded up to the nearest integer                                           | Remove an item from the table.                                                 |
 
-Note that of the read operations, Query is the most effective at conserving RCUs since it only rounds after the amount of data retrieved from each item has already been summed.
+Note that of the read operations, Query is the most effective at conserving RCUs since it only rounds after the amount of data retrieved from each item has already been summed. BatchGetItem and BatchPutItem can operate on one or more tables in a single API call [^3][^8]. Each other API call listed above can operate on only one table at a time [^4][^5][^6][^7][^9][^10].
 
 ## Secondary indices
 
@@ -63,3 +63,11 @@ A DynamoDB Stream is a log of events on how each item in a DynamoDB table has ch
 
 [^1]: "Introduction to Amazon DynamoDB for Serverless Architectures." "Amazon DynamoDB for Serverless Architectures." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/67/play/155/amazon-dynamodb-for-serverless-architectures**](https://explore.skillbuilder.aws/learn/course/67/play/155/amazon-dynamodb-for-serverless-architectures). Accessed 24 Dec 2023.
 [^2]: "How Amazon DynamoDB Works." "Amazon DynamoDB for Serverless Architectures." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/67/play/155/amazon-dynamodb-for-serverless-architectures**](https://explore.skillbuilder.aws/learn/course/67/play/155/amazon-dynamodb-for-serverless-architectures). Accessed 25 Dec 2023.
+[^3]: "BatchGetItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231209090549/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchGetItem.html**](https://web.archive.org/web/20231209090549/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchGetItem.html). Archived 9 Dec 2023. Accessed 27 Dec 2023.
+[^4]: "GetItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231213102140/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html**](https://web.archive.org/web/20231213102140/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html). Archived 13 Dec 2023. Accessed 27 Dec 2023.
+[^5]: "Scan." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231214071536/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html**](https://web.archive.org/web/20231214071536/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html). Archived 14 Dec 2023. Accessed 27 Dec 2023.
+[^6]: "Query." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231214071537/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html**](https://web.archive.org/web/20231214071537/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html). Archived 14 Dec 2023. Accessed 27 Dec 2023.
+[^7]: "PutItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231208052254/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html**](https://web.archive.org/web/20231208052254/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html). Archived 08 Dec 2023. Accessed 27 Dec 2023.
+[^8]: "BatchWriteItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231011130308/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html**](https://web.archive.org/web/20231011130308/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html). Archived 11 Oct 2023. Accessed 27 Dec 2023.
+[^9]: "UpdateItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20231208052253/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html**](https://web.archive.org/web/20231208052253/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html). Archived 08 Dec 2023. Accessed 27 Dec 2023.
+[^10]: "DeleteItem." "Amazon DynamoDB API Reference." [**web.archive.org/web/20230928005730/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DeleteItem.html*](https://web.archive.org/web/20230928005730/https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DeleteItem.html). Archived 28 Sep 2023. Accessed 27 Dec 2023.
