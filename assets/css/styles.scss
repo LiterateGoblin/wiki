@@ -39,16 +39,6 @@ div.article h1 {
   font-size: 2.2em;
 }
 
-.title div {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-}
-
-.title div picture {
-  width: 1.4em;
-}
-
 .container {
   margin: 10px auto;
   max-width: 600px;
@@ -70,11 +60,26 @@ div.article h1 {
 }
 
 .title {
-  text-decoration-line: none;
-  color: #2ecfe8;
-  display: inline-block;
   font-size: 2.5em;
   font-family: "JetBrains Mono", monospace;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
+}
+
+.title a {
+  display: inline-block;
+  text-decoration-line: none;
+  color: #2ecfe8;
+}
+
+.title a div {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  color: #042b30;
+  font-size: 0.7em;
+  justify-content: center;
 }
