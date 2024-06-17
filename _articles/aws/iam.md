@@ -1,6 +1,7 @@
 ---
 title: AWS Identity and Access Management (IAM)
 ---
+
 AWS Identity and Access Management (IAM) is the AWS service used to manage permissions between AWS services. The primary entities that grant identities permissions are users, roles, and groups. Sets of permissions are held in documents called *policies*.
 
 ## Concepts
@@ -25,4 +26,4 @@ The policies that can be attached to users, groups, and roles are identity-based
 
 ## References
 
-<https://explore.skillbuilder.aws/learn/course/8033/play/26696/managing-mysql-security-and-user-access>
+[^1]: "Creating and Managing IAM Users." "Managing MySQL Security and User Access." *AWS Skill Builder*, [**explore.skillbuilder.aws/learn/course/8033/play/26696/managing-mysql-security-and-user-access**](https://explore.skillbuilder.aws/learn/course/8033/play/26696/managing-mysql-security-and-user-access). Accessed 23 Dec 2023.
